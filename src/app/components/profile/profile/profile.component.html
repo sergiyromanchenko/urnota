@@ -1,0 +1,63 @@
+<dynamic-logo [logo]="'urnota-full-logo.svg'" [routerLink]="['/home']"></dynamic-logo>
+<dynamic-background [bg]="'profileBg.jpg'"></dynamic-background>
+<div class="hamburger hamburger--collapse d-block d-sm-none" (click)="menuCollapsed = !menuCollapsed" [ngClass]="{'is-active':!menuCollapsed}">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+  </div>
+
+<div class="profile profile-settings">
+  <div class="content row">
+
+    <div class="side-content align-items-end" [hidden]="menuCollapsed">
+      <section class="d-flex justify-content-center m-t-30">
+          <div class="hidden">
+              <input type="file" #fileInput accept="image/*" id="avatarField" class="form-control" name="file" (change)="changeAvatar()">
+            </div>
+        <user-avatar (click)="fileInput.click()" [avatar]="profile.avatar" [uploading]="avatarUploadInprogress" [uploadEnabled]="true"></user-avatar>
+      </section>
+      <section class="text-center m-t-15">
+        <h5 class="mb-0 f-w-400">{{profile.name}}</h5>
+      </section>
+      <section class="p-l-20 p-r-20 m-t-35 m-b-20">
+        <div class="separator"></div>
+      </section>
+      <ul class="navigation">
+        <li [ngClass]="{active:checkProfileTabActive()}">
+          <a [routerLink]="['/profile/settings']">
+            <img class="passive-icon" src="../../../assets/images/account-passive.svg"><img class="active-icon" src="../../../assets/images/account-active.svg"> Profile</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/profile/dashboard']">
+            <img class="passive-icon" src="../../../assets/images/dashboard-passive.svg"> <img class="active-icon" src="../../../assets/images/dashboard-active.svg">Dashboard</a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/profile/subscriptions']">
+            <img class="passive-icon" src="../../../assets/images/subs-passive.svg"><img class="active-icon" src="../../../assets/images/subs-active.svg"> Subscriptions</a>
+        </li>
+      </ul>
+      <div class="p-l-20">
+        <section class="p-r-20 m-t-20 m-b-30">
+          <div class="separator "></div>
+        </section>
+        <section class="p-t-10 p-b-10">
+          <h5 class="interests-label">My Interests</h5>
+        </section>
+        <section>
+          <div class="interest-item" *ngFor="let item of interests;" [routerLink]="[item.link]">
+            <div class="icon">{{item.name.charAt(0)}}</div>{{item.name}}</div>
+        </section>
+        <section class="p-r-20 m-t-35 m-b-20">
+          <div class="separator "></div>
+        </section>
+        <section class="m-b-20 logout">
+          <a href="javascript:void()" (click)="logout()"><img class="passive-icon" src="../../../assets/images/logout.svg"> <span class="font-s-13 m-l-15 color-light">Logout</span></a>
+        </section>
+      </div>
+    </div>
+    <div class="main-content col">
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

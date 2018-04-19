@@ -1,0 +1,57 @@
+<profile-settings-navigation></profile-settings-navigation>
+<div class="profile-settings">
+  <section class="row m-t-40">
+    <form class="row col-lg-9" (ngSubmit)="updateProfile()">
+
+      <div class="form-group col-lg-6">
+        <input type="text" class="form-control" name="name" [ngClass]="{error:error.name}" [(ngModel)]="profileData.name" placeholder="Name">
+        <span *ngIf="error.name" class="help-block error-message">Name {{error.name[0]}}</span>
+      </div>
+      <div class="form-group col-lg-6">
+        <input type="text" class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+          [(ngModel)]="profileData.address" name="address" placeholder="Address" />
+      </div>
+      <div class="form-group col-lg-6">
+        <input type="text" class="form-control" name="email" [ngClass]="{error:error.email}" [(ngModel)]="profileData.email" placeholder="Email">
+        <span *ngIf="error.email" class="help-block error-message">Email {{error.email[0]}}</span>
+      </div>
+      <div class="form-group col-lg-6">
+        <input type="text" class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+          [(ngModel)]="profileData.city" name="city" placeholder="City" />
+
+      </div>
+      <div class="form-group col-lg-6">
+        <input type="text" class="form-control" name="phone" [textMask]="{mask: phoneMask}" [(ngModel)]="profileData.phone" placeholder="Phone">
+      </div>
+      <div class="form-group col-lg-4">
+        <input type="text" class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+          [(ngModel)]="profileData.state" name="state" placeholder="State" />
+
+      </div>
+      <div class="form-group col-lg-2">
+        <input type="text" class="form-control" name="zip_code" [(ngModel)]="profileData.zip_code" placeholder="Zip">
+      </div>
+      <div class="form-group col-lg-6 row no-gutters">
+        <div class="col-6 " (click)="showPasswordField = true">
+          <a href="javascript:void()" class="font-s-14 color-profile" (click)="showPasswordField = true">Change Password</a>
+        </div>
+        <div class="col-6  text-right" (click)="showPasswordField = false">
+          <a href="javascript:void()" class="font-s-14 color-normal" *ngIf="showPasswordField" (click)="showPasswordField = false">Cancel</a>
+        </div>
+        <input type="password" autofocus *ngIf="showPasswordField" class="form-control m-t-15" name="password" [(ngModel)]="profileData.password"
+          placeholder="Enter new password">
+      </div>
+
+      <section class="col-lg-12">
+        <div class="m-t-40 m-b-15">
+          <button class="btn btn-small btn-primary">Save Changes</button>
+        </div>
+      </section>
+
+    </form>
+    <div class="col-lg-3 text-center">
+
+    </div>
+  </section>
+
+</div>

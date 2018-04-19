@@ -1,0 +1,103 @@
+<div class="partner-signup">
+  <div class="content row">
+    <div class="top">
+      <div class="m-t-20 color-white text-center">
+        <h4>I want to donate</h4>
+      </div>
+      <div class="color-white text-center sum f-w-900">
+        <sup>$</sup>
+        <input type="text" [(ngModel)]="fundData.amount" elastic-input>
+        
+      </div>
+      <div *ngIf="fundData">
+        <nouislider angulartics2On="click" angularticsAction="Click" angularticsLabel="Partner Donate" [angularticsCategory]="'Amount Slider'"
+          [connect]="[true, false]" [config]="sliderConfig" name="fundSnize" [(ngModel)]="fundData.amount" (ngModelChange)="toggleFunds(true)"></nouislider>
+      </div>
+
+      <div class="m-t-20 color-white align-items-center justify-content-center ">
+
+      </div>
+    </div>
+    <div class="w-100 inner-content">
+      <div class="m-t-40 text-center">
+        <a href="javascript:void(0)" class="select-fund-text" (click)="fundsShown = !fundsShown">SELECT FUND</a>
+      </div>
+      <div>
+          <section class="fund-dest-table w-100" [ngClass]="{active:fundsShown}">
+            <div class="text-center m-t-20 m-b-25 font-s-16">You can select where do you want to donate.</div>
+            <div class="row row-head">
+              <div class="row-item col-7">
+                <small>Department</small>
+              </div>
+              <!-- <div class="row-item col-3">
+                    <small>Already Funded</small>
+                  </div>
+                  <div class="row-item col-3">
+                    <small>Funded %</small>
+                  </div> -->
+              <div class="row-item col-5 text-right">
+                <small>Your Pledge</small>
+              </div>
+            </div>
+            <div class="row" *ngFor="let item of fundsList; let i = index" [ngClass]="{'neutral':(getFundPercent(item.goal, item.funded) != 100 && !item.active) || getFundPercent(item.goal, item.funded) == 100}">
+              <div class="row-item col-7">
+
+                  <label class="control control--checkbox" [ngClass]="{inactive:!fundItemCanDisable() && item.active}">
+                    <input type="checkbox" id="item{{i}}" name="cb" [(ngModel)]="item.active" (ngModelChange)="toggleFundItem(item, i)"/>
+                    <div class="control__indicator"></div>
+                  </label>
+      
+
+                <!-- <img class="icon-donate-status m-r-10" (click)="toggleFundItem(item, i)" *ngIf="getFundPercent(item.goal, item.funded) == 100" src="../../../../assets/images/side-subscription-item-full.svg"> -->
+                <!-- <img class="icon-donate-status m-r-10" (click)="toggleFundItem(item, i)" *ngIf="!item.active" src="../../../../assets/images/side-subscription-item-inactive.svg">
+                    <img class="icon-donate-status m-r-10" (click)="toggleFundItem(item, i)" *ngIf="item.active && getFundPercent(item.goal, item.funded) != 100" src="../../../../assets/images/side-subscription-item-active.svg"> -->
+                {{item.name}}
+              </div>
+              <!-- <div class="row-item col-3">{{item.goal | customCurrency}}</div>
+                  <div class="row-item col-4">
+                    <progress-bar class="partner-signup-progress-bar m-r-10" [height]="7" [value]="getFundPercent(item.goal, item.funded)" [max]="100"></progress-bar>
+                    {{getFundPercent(item.goal, item.funded)}}%
+                  </div>
+   -->
+              <div class="row-item col-5 text-right row-goal" [ngClass]="{'input-row':getFundPercent(item.goal, item.funded) != 100}">
+                <img *ngIf="getFundPercent(item.goal, item.funded) == 100" src="../../../../assets/images/tick-success.svg" alt="">
+                <input (clickOutside)="item.editing =! item.editing" (blur)="item.editing = false" (keyup.enter)="item.editing = !item.editing"
+                  *ngIf="getFundPercent(item.goal, item.funded) != 100 && item.editing" class="w-100-sm" type="number"
+                  name="item-fund-{{i}}" [(ngModel)]="item.fund" onkeypress="return event.charCode >= 48 && event.charCode <= 57" (ngModelChange)="recalculateTotalFundAmount(item, i)"
+                  minlength="1" min="0" oninput="this.value = Math.abs(this.value)">
+                <span *ngIf="!item.editing && item.active" (click)="item.editing = !item.editing;$event.stopPropagation()">{{item.fund | customCurrency}}</span>
+                <span *ngIf="!item.editing && !item.active">0</span>
+              </div>
+            </div>
+
+          </section>
+        </div>
+      <div class="d-flex row justify-content-center my-0 m-t-40 mobile-toggle-selects">
+        <div class="toggle-item d-flex flex-column m-r-20 align-items-center justify-content-center col" [ngClass]="{selected:fundData.subscription == 'once'}"
+          (click)="selectFundDuration('once')">
+          <svg-icon src=".../../../assets/images/once-donate-mobile-active.svg" *ngIf="fundData.subscription == 'once'"></svg-icon>
+          <svg-icon src=".../../../assets/images/once-donate-mobile-inactive.svg" *ngIf="fundData.subscription == 'monthly'"></svg-icon>
+          <span>One time</span>
+        </div>
+        <div class="toggle-item d-flex flex-column align-items-center justify-content-center col" (click)="selectFundDuration('monthly')"
+          (click)="selectFundDuration('monthly')" [ngClass]="{selected:fundData.subscription == 'monthly'}">
+          <svg-icon src=".../../../assets/images/recurring-donate-mobile-active.svg" *ngIf="fundData.subscription == 'monthly'"></svg-icon>
+          <svg-icon src=".../../../assets/images/recurring-donate-mobile-inactive.svg" *ngIf="fundData.subscription == 'once'"></svg-icon>
+          <span>Monthly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #existingUserTooltipContent let-existingUserTooltip="existingUserTooltip">
+
+  <img class="d-inline-block m-r-10" src="../../../../assets/images/user-existing.svg" alt="">
+
+  <div class="d-inline-block font-s-13 color-dark">
+    It seems that you are already registered.
+    <br>
+    <a href="javascript:void(0)" (click)="showSignin()" angulartics2On="click" angularticsAction="Click" angularticsLabel="Partner Donate"
+      [angularticsCategory]="'Tooltip Signin'">Sign in to your account</a> to proceed faster.
+  </div>
+</ng-template>

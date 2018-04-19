@@ -1,0 +1,378 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "responsive";
+@import "fonts";
+@import "forms";
+@import "spacing";
+@import "variables";
+@import "custom-checkbox";
+@import "donate";
+$hamburger-layer-color: #fff;
+@import "../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+html,
+body {
+    background: #f5f5f5;
+}
+
+body {
+    font-family: Avenir;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #4f4f4f;
+}
+
+.donate {
+    font-family: Avenir;
+}
+
+*:focus {
+    outline: none;
+    box-shadow: none !important;
+}
+
+[ng-reflect-router-link] {
+    cursor: pointer;
+}
+
+.content {
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 2;
+    padding: 0 0 70px 0;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.side-content {
+    width: 200px;
+    border-left: 1px solid #f2f2f2;
+}
+
+.separator {
+    height: 1px;
+    width: 100%;
+    background-color: #f0f0f0;
+    box-shadow: inset 1px 0 0 0 #f2f2f2;
+}
+
+a {
+    color: #66c05f;
+    &:hover {
+        text-decoration: none;
+        color: #35AD2C;
+    }
+}
+
+// Typography
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+.font-s-18 {
+    font-size: 18px;
+}
+
+.font-s-15 {
+    font-size: 15px;
+}
+
+.font-s-14 {
+    font-size: 14px;
+}
+
+.font-s-13 {
+    font-size: 13px;
+}
+
+.font-s-12 {
+    font-size: 12px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.font-normal {
+    font-weight: normal
+}
+
+.f-w-400 {
+    font-weight: 400;
+}
+
+.f-w-900 {
+    font-weight: 900;
+}
+
+// Icons
+.chevron {
+    fill: #cccccc;
+}
+
+.fill-white {
+    fill: #fff;
+}
+
+// Helpers
+.hidden {
+    display: none;
+}
+
+.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+// Colors
+.color-dark {
+    color: #4f4f4f;
+}
+
+.color-normal {
+    color: #808080;
+}
+
+.color-light {
+    color: #a6a6a6;
+}
+
+.color-white {
+    color: #fff;
+}
+
+.color-profile {
+    color: $brand-profile;
+}
+
+.color-donate {
+    color: $brand-donate;
+}
+
+.link-green {
+    color: #66c05f;
+    text-transform: none;
+}
+
+// Modal
+.modal-dialog,
+.modal-backdrop {
+    opacity: 0;
+}
+
+.anim-show {
+    .modal-dialog {
+        -webkit-animation: 0.5s ease 0s normal forwards 1 fadeinModal;
+        animation: 0.5s ease 0s normal forwards 1 fadeinModal;
+    }
+}
+
+.anim-hide {
+    .modal-dialog {
+        -webkit-animation: 0.8s ease 0s normal forwards 1 fadeOutModal;
+        animation: 0.8s ease 0s normal forwards 1 fadeOutModal;
+    }
+}
+
+@keyframes fadeinModal {
+    0% {
+        opacity: 0;
+    }
+    66% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 1vh);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutModal {
+    0% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0, -1vh);
+        opacity: 0;
+    }
+}
+
+// Payment method
+.payment-method {
+    .inner {
+        border-radius: 5px;
+        background-color: #f7f7f7;
+        border: solid 1px #f0f0f0;
+        padding: 30px;
+        height: 137px;
+        &.add-new {
+            padding-top: 20px;
+            .add-icon {
+                cursor: pointer;
+                display: inline-block;
+                height: 60px;
+                width: 60px;
+                background: #fafafa;
+                color: #cacaca;
+                border-radius: 30px;
+                line-height: 54px;
+                font-size: 50px;
+                font-weight: 100;
+                margin-bottom: 15px;
+            }
+            background: #fff;
+        }
+    }
+}
+
+// Modals
+.modal-content {
+    border-radius: 5px;
+    border: none;
+    padding: 30px 40px;
+    min-width: 500px;
+    .modal-header,
+    .modal-footer,
+    .modal-body {
+        border: none;
+        padding: 0;
+    }
+    .modal-footer {
+        margin-top: 30px;
+    }
+    .modal-header {
+        margin-bottom: 20px;
+    }
+    .modal-title {
+        font-size: 24px;
+    }
+    .modal-body {
+        font-size: 15px;
+        color: #808080;
+    }
+    button.close {
+        cursor: pointer;
+        &:focus,
+        &:active {
+            outline: none;
+            box-shadow: none;
+        }
+        &:active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+    }
+}
+
+// Table
+.table {
+    small {
+        font-size: 12px;
+        color: #a6a6a6;
+        font-weight: 300;
+    }
+    .row {
+        margin: 0;
+        .row-item {
+            padding: 17px 0;
+            font-size: 14px;
+            color: #4f4f4f;
+            border-bottom: 1px solid #ebebeb;
+        }
+        &.neutral {
+            .row-item {
+                color: #999999;
+            }
+        }
+    }
+    .row-head {
+        .row-item {
+            padding: 25px 0 10px 0;
+            color: #a6a6a6;
+        }
+    }
+}
+
+.ps__rail-y:hover {
+    background-color: transparent !important;
+}
+
+@include media-breakpoint-down(sm) {
+    .fund-dest-table {
+        .row {
+            .row-item {
+                &.input-row {
+                    &.row-goal {
+                        input {
+                            font-size: 18px;
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .content,
+    .side-content,
+    .separator {
+        width: 100% !important;
+        border-radius: 0;
+    }
+    .tab-nav {
+        overflow: auto;
+        white-space: nowrap;
+    }
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .top-content {
+        height: auto !important;
+        padding-bottom: 15px;
+    }
+    .content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .text-left,
+    .text-right {
+        text-align: center !important;
+    }
+    .w-100-sm {
+        width: 100% !important;
+    }
+    .table-wrap {
+        overflow-x: scroll;
+        .table {
+            min-width: 650px;
+        }
+    }
+    .main-content {
+        padding: 25px !important;
+    }
+}

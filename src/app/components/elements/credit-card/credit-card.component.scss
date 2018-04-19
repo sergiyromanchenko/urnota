@@ -1,0 +1,35 @@
+.payment-method {
+    &.inactive {
+        .inner {
+            border: solid 1px #fad4d4;
+            .ending,
+            .card-icon {
+                opacity: 0.3;
+            }
+        }
+    }
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+.tooltip-inner {
+    opacity: 1;
+    padding: 15px;
+    max-width: unset;
+    text-align: left;
+    min-width: 335px;
+    border-radius: 5px;
+    background: #fff9e3;
+    color:#4f4f4f;
+    box-shadow: 0 3px 10px 0 rgba(76, 68, 35, 0.3);
+    a {
+        color: #c82524;
+    }
+}
+
+.tooltip.bs-tooltip-top .arrow::before,
+.tooltip.bs-tooltip-auto[x-placement^="top"] .arrow::before {
+    border-top-color: #fff9e3;
+}

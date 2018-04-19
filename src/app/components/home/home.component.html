@@ -1,0 +1,129 @@
+<div class="home">
+  <div class="home__header">
+
+    <nav class="home__nav">
+      <div class="home__nav-container">
+        <a href="/" class="home__nav-logo">
+          <img src="../../../assets/images/logo.svg">
+        </a>
+        <!-- <ul class="home__nav-list" [ngClass]="toggleNav ? 'nav-active' : 'nav-close'">
+          <li class="active"><a href="#">Features</a></li>
+          <li><a href="#">Campaigns</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul> -->
+        <div class="home__nav-sign-in">
+          <a [routerLink]="['/signin']">Sign In</a>
+        </div>
+        <!-- <div class="home__nav-toggle" [ngClass]="toggleNav ? 'nav-active' : 'nav-close'" (click)="toggleNavEvent()">
+          <div class="home__nav-toggle-item"></div>
+          <div class="home__nav-toggle-item"></div>
+          <div class="home__nav-toggle-item"></div>
+          <div class="home__nav-toggle-item"></div>
+        </div> -->
+      </div>
+    </nav>
+
+    <div class="home__header-container">
+      <div class="home__header-info-col">
+        <div class="home__header-info-wrap">
+          <h1 class="home__header-title">Donation Platform for Ministries</h1>
+          <p class="home__header-text">
+            Bridging the gap between donors and organizations with tools for accountability and transparency.
+          </p>
+          <a [routerLink]="['/donate/partner']">
+            <span>Sign Up</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="home__header-img-col">
+        <img src="../../../assets/images/home-header.png" alt="">
+      </div>
+
+    </div>
+
+  </div>
+
+  <section class="home__track">
+    <div class="home__track-backdrop"></div>
+    <div class="home__track-list">
+
+      <div class="home__card">
+        <div class="home__card-header">
+          <div class="home__card-header-icon">
+            <img src="../../../assets/images/home/003_pie_chart.svg">
+          </div>
+          <div class="home__card-header-title">Donor Dashboard</div>
+        </div>
+        <div class="home__card-content">Manage all your donations, pledges and campaigns from one dashboard.</div>
+      </div>
+
+      <div class="home__card">
+        <div class="home__card-header">
+          <div class="home__card-header-icon">
+            <img src="../../../assets/images/home/001_optometrist.svg">
+          </div>
+          <div class="home__card-header-title">Organization Transparency</div>
+        </div>
+        <div class="home__card-content">Know where your donations are spent – view reports on expenses and forecast.</div>
+      </div>
+
+      <div class="home__card">
+        <div class="home__card-header">
+          <div class="home__card-header-icon">
+            <img src="../../../assets/images/home/002_network.svg">
+          </div>
+          <div class="home__card-header-title">Network</div>
+        </div>
+        <div class="home__card-content">Search, follow and subscribe to other organizations through our portal.</div>
+      </div>
+
+    </div>
+
+    <div class="home__ministries">
+      <div class="home__ministries-title">Ministries</div>
+      <div class="home__ministries-card">
+        <div class="home__ministries-card-header">
+          <img src="../../../assets/images/logo-flame-ministry.png">
+        </div>
+        <div class="home__ministries-card-content">
+          <div class="home__user">
+            <div class="home__user-avatar"><img src="../../../assets/images/home-user.jpg" alt=""></div>
+          </div>
+          <div class="home__user-name">Flame of Fire Ministry</div>
+          <a [routerLink]="['/donate/partner']" class="home__donate-btn">
+            <span>Donate</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home__contacts">
+    <h2 class="home__ministries-title">Contacts</h2>
+    <div class="home__contacts-list">
+      <a href="" class="home__card">
+        <span class="home__contacts-icon">
+          <img src="../../../assets/images/home/location.svg" alt="">
+        </span>
+        <span class="home__contacts-label">LOCATION</span>
+        <span class="home__contacts-title">1382 Blue Oaks Blvd,<br>Roseville, CA 95678</span>
+      </a>
+      <a href="" class="home__card">
+        <span class="home__contacts-icon">
+          <img src="../../../assets/images/home/phone.svg" alt="">
+        </span>
+        <span class="home__contacts-label">PHONE</span>
+        <span class="home__contacts-title">916-330-4590</span>
+      </a>
+      <a href="mailto:info@urnota.com" class="home__card">
+        <span class="home__contacts-icon">
+          <img src="../../../assets/images/home/email.svg" alt="">
+        </span>
+        <span class="home__contacts-label">EMAIL</span>
+        <span class="home__contacts-title">info@urnota.com</span>
+      </a>
+    </div>
+  </section>
+
+</div>

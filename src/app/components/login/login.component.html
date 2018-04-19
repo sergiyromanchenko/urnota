@@ -1,0 +1,36 @@
+
+
+<div class="login">
+    <dynamic-logo [logo]="'urnota-full-logo.svg'"></dynamic-logo>
+    <dynamic-background [bg]="'profileBg.jpg'"></dynamic-background>
+  <div class="content">
+    <div class="text-center">
+      <h3 class="mb-0">Sign In</h3>
+      <form name="form" (ngSubmit)="f.form.valid && signin()" #f="ngForm" novalidate>
+        <div class="form-group m-t-30">
+          <input type="email" class="form-control" name="email" [(ngModel)]="signinData.email" #username="ngModel" placeholder="Login"
+            required>
+        </div>
+        <div class="form-group m-t-10">
+          <input type="password" class="form-control" name="password" [(ngModel)]="signinData.password" #password="ngModel" placeholder="Password"
+            required />
+            <span *ngIf="error" class="help-block error-message">{{error}}</span>
+        </div>
+        <div class="row m-t-15">
+          <div class="col-lg-6 text-left mx-0">
+
+              <input type="checkbox" id="remember" class="custom-checkbox m-r-10" name="remember" [(ngModel)]="signinData.remember" #remember="ngModel">
+              <label class="font-s-14 mb-0" for="remember">Keep me signed in</label>
+            </div>
+          <div class="col-lg-6 text-right mx-0">
+            <a href="javascript:void(0)" [routerLink]="['/resetPassword']" class="color-normal font-s-14">Forgot password ?</a>
+          </div>
+        </div>
+        <div class="form-group m-t-25">
+          <button type="submit" class="btn btn-small btn-primary btn-block">Sign In</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<profile-settings-navigation></profile-settings-navigation>
+<loader-circle *ngIf="paymentMethodsLoading"></loader-circle>
+<div *ngIf="!paymentMethodsLoading" class="profile-payments row">
+
+  <ng-container *ngFor="let provider of paymentProviders">
+    <ng-container *ngFor="let method of paymentMethods[provider]">
+      <credit-card class="col-md-4 col-sm-12 m-b-30" [inactive]="provider == 'braintree'" *ngIf="method.attributes.card_type" (onAction)="showEditPaymentMethod('update', method, provider)"
+        [actionText]="getMethodActionText(method, provider)" [cardData]="method.attributes"></credit-card>
+    </ng-container>
+  </ng-container>
+  <div class="col-lg-4 payment-method text-center">
+
+    <div class="inner add-new d-flex flex-column align-items-center justify-content-center" (click)="showEditPaymentMethod('add')">
+      <div class="add-icon">
+        <img src="../../../../assets/images/plus.svg" alt="">
+      </div>
+
+      <h5 class="color-light m-t-15 m-b-0">Add New</h5>
+    </div>
+
+  </div>
+</div>

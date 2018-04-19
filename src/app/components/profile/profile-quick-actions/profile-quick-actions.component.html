@@ -1,0 +1,51 @@
+<div class="profile-quick-actions" *ngIf="profile.profile_complete">
+  <div class="badge d-none d-md-block" (click)="menuToggled = !menuToggled;$event.stopPropagation()">
+    <img class="avatar" [src]="getAvatar(profile.avatar)" alt="">
+    <div class="name">{{profile.name}}</div>
+    <div class="arrow"></div>
+  </div>
+  <div class="badge-mobile d-none d-block d-md-none" [ngClass]="{toggled:menuToggled, 'authenticated':profileService.isAuthenticated()}" (click)="menuToggled = !menuToggled;$event.stopPropagation()">
+    <img *ngIf="!menuToggled" [src]="getAvatar(profile.avatar)" alt="" class="avatar">
+    <svg-icon class="cross" [hidden]="!menuToggled" src=".../../../assets/images/close.svg"></svg-icon>
+  </div>
+  <div class="menu" *ngIf="menuToggled" (clickOutside)="menuToggled = false">
+    <div class="d-none d-block d-md-none">
+      <section class="d-flex justify-content-center m-t-30">
+        <user-avatar [avatar]="profile.avatar" [uploadEnabled]="false"></user-avatar>
+      </section>
+      <section class="text-center m-t-15 m-b-30">
+        <h5 class="mb-0 f-w-400">{{profile.name}}</h5>
+      </section>
+    </div>
+    <ul class="navigation">
+      <li [routerLink]="['/profile']">
+        <a>
+          <img class="passive-icon d-none d-md-inline-block" src="../../../assets/images/account-passive.svg"> Profile</a>
+      </li>
+      <li [routerLink]="['/profile/dashboard']">
+        <a>
+          <img class="passive-icon d-none d-md-inline-block" src="../../../assets/images/dashboard-passive.svg"> Dashboard</a>
+      </li>
+      <li [routerLink]="['/profile/subscriptions']">
+        <a>
+          <img class="passive-icon d-none d-md-inline-block" src="../../../assets/images/subs-passive.svg"> Subscriptions</a>
+      </li>
+    </ul>
+    <section>
+      <div class="separator mx-auto"></div>
+    </section>
+    <section class="logout" (click)="logout()">
+      <img class="passive-icon d-none d-md-inline-block" src="../../../assets/images/logout.svg">
+      <span class="font-s-13 m-l-15 color-light">Logout</span>
+    </section>
+  </div>
+</div>
+<div class="badge-mobile d-none d-inline-block d-md-none" *ngIf="!profileService.isAuthenticated()" [ngClass]="{toggled:menuToggled}" (click)="showSignin($event)">
+  <svg-icon class="fill-white" [hidden]="menuToggled" src=".../../../assets/images/account.svg"></svg-icon>
+</div>
+<div class="profile-quick-actions d-none d-md-inline-block" *ngIf="!profileService.isAuthenticated()">
+  <div class="badge signin d-flex justify-content-center align-items-center" (click)="showSignin($event)" angulartics2On="click" angularticsAction="Click" angularticsLabel="Profile Quick Actions"
+  [angularticsCategory]="'Signin'">
+    <div class="name">Sign In to Urnota</div>
+  </div>
+</div>

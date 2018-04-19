@@ -1,0 +1,27 @@
+@import "variables";
+.payments {
+  .ministry {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border: solid 1px #ebebeb;
+    padding: 15px;
+    margin-top: 10px;
+    &:first-child {
+      margin-top: 0;
+    }
+    .short-name {
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      border-radius: 15px;
+      width: 30px;
+      height: 30px;
+      background-color: #d83f3f;
+      line-height: 30px;
+      &.active{
+        background: $brand-profile;
+      }
+    }
+  }
+  
+}

@@ -1,0 +1,17 @@
+<form id="cardForm" novalidate>
+  <div class="row card-input no-gutters">
+    <div class="form-group col-12">
+      <div class="form-control" id="card-number"></div>
+    </div>
+    <div class="form-group col-8">
+      <div class="form-control" id="expiration-date"></div>
+    </div>
+    <div class="form-group col-4 p-l-15">
+      <div class="form-control" id="cvv" type="password"></div>
+    </div>
+    <section class="m-t-30 col-lg-12" [hidden]="!sum">
+      <button type="submit" id="cardSubmit" disabled class="btn btn-big btn-red btn-donate btn-block" angulartics2On="click" angularticsAction="Click" angularticsLabel="Donate Card Entry" [angularticsCategory]="'Donate Button'">
+        <loader id="submitLoader"></loader></button>
+    </section>
+  </div>
+</form>

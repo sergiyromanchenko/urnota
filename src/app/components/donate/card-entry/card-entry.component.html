@@ -1,0 +1,137 @@
+<div class="card-entry">
+
+  <div class="content row">
+    <div class="top">
+      <div class="text-center m-t-20 m-b-30">
+        <h4 class="text-white">Credit Card</h4>
+      </div>
+      <div class="wave-icon">
+        <svg-icon src="../../../../assets/images/wave-green.svg"></svg-icon>
+      </div>
+    </div>
+    <div class="payment-methods m-t-40">
+      <div *ngIf="paymentMethods.length > 0 && paymentMethod != 'new'">
+
+        <div class="m-t-20 methods" *ngIf="paymentMethods.length > 0 || paymentMethod != 'new'">
+          <!-- <ul class="radio">
+                <li  class="method" *ngFor="let method of paymentMethods; let i = index">
+      
+                  <input type="radio" id="item-{{i}}" name="radio-group" [value]="method.attributes.token" [(ngModel)]="paymentMethod">
+                  <label for="item-{{i}}" class="color-dark p-l-40">{{method.attributes.card_type}} **** {{method.attributes.last_4}}</label>
+                </li>
+                <li class="method" >
+                  <input type="radio" id="new" name="radio-group" [value]="'new'" [(ngModel)]="paymentMethod">
+                  <label for="new" class="color-dark p-l-40">Add new payment method</label>
+                </li>
+              </ul> -->
+
+          <div class="method d-flex align-items-center justify-content-start" *ngFor="let method of paymentMethods; let i = index"
+            (click)="paymentMethod = method.attributes.token" [ngClass]="{selected:paymentMethod == method.attributes.token}">
+            <img src="../../../../assets/images/{{getCardType(method.attributes)}}.svg" alt="" class="m-r-10"> Ending {{method.attributes.last_4}}
+          </div>
+          <div class="method d-flex align-items-center justify-content-start" (click)="paymentMethod = 'new'" >
+            Add new payment method
+          </div>
+          <section class="m-t-30 col-lg-12 p-0">
+            <button type="button" class="btn btn-big btn-red btn-donate btn-block" [disabled]="!paymentMethod" (click)="submitPaymentMethod()"
+              angulartics2On="click" angularticsAction="Click" angularticsLabel="Donate Card Entry" [angularticsCategory]="'Donate Button'">
+              <span *ngIf="!paymentPending">Donate {{paymentInfo.totalAmount | customCurrency }}</span>
+              <loader *ngIf="paymentPending"></loader></button>
+          </section>
+        </div>
+      </div>
+
+      <div *ngIf="paymentMethods.length == 0 || paymentMethod == 'new'">
+        <section *ngIf="activeTab == 0">
+          <div class="custom-dropdown p-t-20 p-b-20 row no-gutters d-flex justify-content-between" *ngIf="paymentMethods.length > 0"
+            (click)="paymentMethod = paymentMethods[0].id">
+            <div class="col-1 pl-0">
+              <img src="../../../assets/images/credit-card-plus.svg" alt="">
+            </div>
+            <div class="col-9 p-l-20">Add new payment method</div>
+            <div class="col-1">
+              <svg-icon class="chevron" src="../../../assets/images/chevron-down.svg"></svg-icon>
+            </div>
+          </div>
+        </section>
+        <section>
+          <card-input *ngIf="config.payment_provider == 'braintree'" [sum]="paymentInfo.totalAmount" (onCardAdded)="cardAdded($event)"></card-input>
+          <stripe *ngIf="config.payment_provider == 'stripe'" [sum]="paymentInfo.totalAmount" (onCardAdded)="cardAdded($event)"></stripe>
+        </section>
+      </div>
+      <section class="m-t-20 p-b-20 text-center" [hidden]="activeTab != 0">
+        <img class="m-r-5" src="../../../../assets/images/icon-lock.svg" alt="">
+        <small class="font-semibold">We keep your personal information private and secure.</small>
+      </section>
+    </div>
+  </div>
+
+  <!-- <div class="card-entry">
+  <div class="content row">
+    <div class="top">
+      <div class="steps d-flex align-items-center justify-content-center m-t-30">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="text-center m-t-20 m-b-30">
+        <h4 class="text-white">Credit Card</h4>
+      </div>
+      <div class="wave-icon">
+        <svg-icon src="../../../../assets/images/wave-green.svg"></svg-icon>
+      </div>
+    </div>
+    <div class="form-wrap">
+      <section class="notification" *ngIf="!profileService.isAuthenticated() && this.userSeemsExisting">
+        It seem that you are already registered.
+        <a [routerLink]="['/donate/signin']" class="color-donate">Sign in to your account</a> to proceed faster.
+      </section>
+      <h4 class="text-center m-t-40 m-b-30">Credit Card</h4>
+      <div *ngIf="paymentMethods.length > 0 && paymentMethod != 'new'" class="m-t-40 payment-methods">
+
+        <div class="m-t-20">
+          <ul class="radio">
+            <li *ngFor="let method of paymentMethods; let i = index">
+
+              <input type="radio" id="item-{{i}}" name="radio-group" [value]="method.attributes.token" [(ngModel)]="paymentMethod">
+              <label for="item-{{i}}" class="color-dark p-l-40">{{method.attributes.card_type}} **** {{method.attributes.last_4}}</label>
+            </li>
+            <li>
+              <input type="radio" id="new" name="radio-group" [value]="'new'" [(ngModel)]="paymentMethod">
+              <label for="new" class="color-dark p-l-40">Add new payment method</label>
+            </li>
+          </ul>
+
+          <section class="m-t-30 col-lg-12 p-0">
+            <button type="button" class="btn btn-big btn-red btn-donate btn-block" [disabled]="!paymentMethod" (click)="submitPaymentMethod()"
+              angulartics2On="click" angularticsAction="Click" angularticsLabel="Donate Card Entry" [angularticsCategory]="'Donate Button'">Donate {{paymentInfo.totalAmount | customCurrency }}</button>
+          </section>
+        </div>
+      </div>
+
+      <div *ngIf="paymentMethods.length == 0 || paymentMethod == 'new'">
+        <section *ngIf="activeTab == 0">
+          <div class="custom-dropdown p-t-20 p-b-20 row no-gutters d-flex justify-content-between" *ngIf="paymentMethods.length > 0"
+            (click)="paymentMethod = paymentMethods[0].id">
+            <div class="col-1 pl-0">
+              <img src="../../../assets/images/credit-card-plus.svg" alt="">
+            </div>
+            <div class="col-9 p-l-20">Add new payment method</div>
+            <div class="col-1">
+              <svg-icon class="chevron" src="../../../assets/images/chevron-down.svg"></svg-icon>
+            </div>
+          </div>
+        </section>
+        <section>
+          <card-input *ngIf="config.payment_provider == 'braintree'" [sum]="paymentInfo.totalAmount" (onCardAdded)="cardAdded($event)"></card-input>
+          <stripe *ngIf="config.payment_provider == 'stripe'" [sum]="paymentInfo.totalAmount" (onCardAdded)="cardAdded($event)"></stripe>
+        </section>
+      </div>
+      <section class="m-t-20 p-b-20 text-center" [hidden]="activeTab != 0">
+        <img class="m-r-5" src="../../../../assets/images/icon-lock.svg" alt="">
+        <small class="font-semibold">We keep your personal information private and secure.</small>
+      </section>
+    </div>
+  </div>
+</div> -->

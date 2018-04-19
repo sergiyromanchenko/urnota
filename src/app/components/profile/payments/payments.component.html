@@ -1,0 +1,20 @@
+<profile-settings-navigation></profile-settings-navigation>
+<div class="payments">
+  
+      <loader-circle *ngIf="subscriptionsLoading"></loader-circle>
+  <ng-container *ngIf="!subscriptionsLoading">
+    <div class="ministry row col-12 no-gutters" *ngFor="let item of subscriptions;">
+      <div class="col-md-1">
+        <div class="short-name" [ngClass]="{active:item.attributes.active}">{{item.attributes.name.charAt(0)}}</div>
+      </div>
+      <div class="name col-md-4 font-s-15 color-dark d-flex align-items-center">{{item.attributes.name}}</div>
+      <div class="col-md-3 font-s-15 color-dark d-flex align-items-center">{{item.attributes.card_type}} - **** {{item.attributes.last_4}}</div>
+      <div class="col-md-2 font-s-15 color-dark d-flex align-items-center justify-content-md-center justify-content-sm-start">${{item.attributes.donation || item.attributes.amount_per_month}}
+        <span *ngIf="item.attributes.amount_per_month">/m</span>
+      </div>
+      <div class="col-md-2 font-s-15 color-dark d-flex align-items-center justify-content-md-end justify-content-sm-start">
+        <a href="javascript:void(0)" class="link-green" *ngIf="item.attributes.amount_per_month" (click)="subscriptionEdit(item)">edit</a>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,29 @@
+<div class="payment-method" [ngClass]="{inactive:inactive}">
+
+  <div class="inner">
+    <div class="row no-gutters">
+      <div class="col-8 ending">
+        <h5>Ending in {{cardData.last_4}}</h5>
+      </div>
+      <div class="col-4 d-flex justify-content-end card-icon">
+        <img src="../../../../assets/images/{{getCardType()}}.svg" alt="" class="m-r-10">
+      </div>
+    </div>
+    <h5 *ngIf="!inactive">Exp. {{cardData.expiration}}</h5>
+    <span *ngIf="inactive" class="font-s-14">Payment method need update</span>
+    <div class="m-t-15 d-flex justify-content-between">
+      <a href="javascript:void(0)" (click)="suggestionWasClicked()">
+        <span class="color-profile font-s-14 mb-0">{{actionText}}</span>
+      </a>
+      <img src="../../../../assets/images/icon-help.svg" *ngIf="inactive" alt="" class="m-r-10" [ngbTooltip]="tipContent" placement="bottom">
+    </div>
+  </div>
+
+</div>
+
+
+<ng-template #tipContent>Due to changing of our payment processing company, we are asking you to update your card info. You can use the same card
+  or the new one.
+  <br><br>
+  <b>Note:</b> If you have recurring donations connected to this card, they will be transfered to updated payment method.
+</ng-template>

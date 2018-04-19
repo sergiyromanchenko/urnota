@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="26px" viewBox="0 0 40 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>8331B966-6A05-4D80-8078-DCA153A86274</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="40" height="26"></rect>
+    </defs>
+    <g id="My-Profile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Profile-Payments-Subscription-Settings" transform="translate(-1185.000000, -258.000000)">
+            <g id="Group-2" transform="translate(982.000000, 231.000000)">
+                <g id="Mastercard" transform="translate(203.000000, 27.000000)">
+                    <g id="Rectangle-2">
+                        <use fill="#F7F7F7" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <rect stroke="#EBEBEB" stroke-width="1" x="0.5" y="0.5" width="39" height="25"></rect>
+                    </g>
+                    <circle id="Oval-2" fill="#E52124" cx="14" cy="13" r="10"></circle>
+                    <circle id="Oval-2" fill="#F89E01" cx="26" cy="13" r="10"></circle>
+                    <path d="M20,4.99926763 C22.4288934,6.82368029 24,9.72836434 24,13 C24,16.2716357 22.4288934,19.1763197 20,21.0007324 C17.5711066,19.1763197 16,16.2716357 16,13 C16,9.72836434 17.5711066,6.82368029 20,4.99926763 Z" id="Combined-Shape" fill="#F16517"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

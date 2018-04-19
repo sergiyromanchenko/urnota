@@ -1,0 +1,38 @@
+.payment-method {
+  .inner {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border: solid 1px #f0f0f0;
+    padding: 30px;
+    height: 137px;
+    &.add-new {
+        cursor: pointer;
+        padding: 0;
+      background: #fff;
+      .add-icon {
+        background: #fafafa;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        margin-bottom:0;
+        img {
+          margin:0;
+        }
+      }
+    }
+  }
+  .disabled{
+    border: solid 1px #fad4d4;
+  }
+}
+
+
+.modal-body{
+    .tab-nav li{
+        width: 50%;
+    }
+}
+
+.modal-dialog{
+  width: 500px;
+}

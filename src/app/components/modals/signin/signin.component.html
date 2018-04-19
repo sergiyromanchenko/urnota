@@ -1,0 +1,42 @@
+<form name="form" (ngSubmit)="f.form.valid && submitSignin()" #f="ngForm" novalidate>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <img src="../../../../assets/images/icon-close.svg" alt="">
+
+  </button>
+  <div class="modal-header d-flex justify-content-center">
+    <img class="m-t-30 m-b-30 logo" src="../../../../assets/images/urnota-logo-green.png" alt="">
+    
+  </div>
+  <div class="modal-body">
+    <div class="signin m-t-30">
+      <div class="text-center">
+        <h3 class="mb-0 bold">Sign In</h3>
+
+        <div class="form-group m-t-30 p-0">
+          <input type="email" class="form-control" name="email" [(ngModel)]="signinData.email" #username="ngModel" placeholder="Login"
+            required>
+        </div>
+        <div class="form-group m-t-10 p-0">
+          <input type="password" class="form-control" name="password" [(ngModel)]="signinData.password" #password="ngModel" placeholder="Password"
+            required />
+          <span *ngIf="error" class="help-block error-message">{{error}}</span>
+        </div>
+        <div class="row no-gutters m-t-15">
+          <div class="col-6 text-left mx-0">
+
+            <input type="checkbox" id="remember" class="custom-checkbox m-r-10" name="remember" [(ngModel)]="signinData.remember" #remember="ngModel">
+            <label class="font-s-14 mb-0" for="remember">Keep me signed in</label>
+          </div>
+          <div class="col-6 text-right mx-0">
+            <a href="javascript:void(0)" class="color-normal font-s-14" (click)="goToResetPassword()">Forgot password ?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-block">
+    <div class="m-t-25">
+      <button type="submit" class="btn btn-small btn-primary btn-block">Sign In</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,98 @@
+
+
+loader{
+    position: relative;
+    display: inline-block;
+    height: 15px;
+    width: 65px;
+    margin: 0 auto;
+    .loading {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        font-size: 0;
+        &.reversed {
+          li {
+              border: 3px solid white;
+              animation: LOADINGREV 2s infinite;
+              &:nth-child(1n) {
+                animation-delay: 0s;
+              }
+              &:nth-child(2n) {
+                animation-delay: 0.2s;
+              }
+              &:nth-child(3n) {
+                animation-delay: 0.4s;
+              }
+            }
+        }
+        li {
+          height: 0;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 0;
+          margin: 0;
+          height: 15px;
+          width: 15px;
+          border: 2px solid #fff;
+          border-radius: 100%;
+          transform: transformZ(0);
+          animation: LOADING 2s infinite;
+          &:nth-child(1n) {
+            left: 0px;
+            animation-delay: 0s;
+          }
+          &:nth-child(2n) {
+            left: 25px;
+            animation-delay: 0.2s;
+          }
+          &:nth-child(3n) {
+            left: 50px;
+            animation-delay: 0.4s;
+          }
+        }
+      }
+      
+      .grid-row {
+        &:after {
+          content: '';
+          display: table;
+          clear: both;
+        }
+        .col {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 50%;
+        }
+        .col + .col {
+          left: auto;
+          right: 0;
+        }
+      }
+      
+      @keyframes  LOADING {
+        0%   { 
+          transform: scale(0.5);
+          background: #fff;
+        }
+        50%   { 
+          transform: scale(1);
+          background: rgba(255, 255, 255, 0.5);
+        }
+        100% { 
+          transform: scale(0.5);
+          background: transparent;
+        }
+      }
+      
+  
+
+      
+}

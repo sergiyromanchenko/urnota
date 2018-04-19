@@ -1,0 +1,53 @@
+@import "../donate";
+.donation-done {
+    .top {
+        position: relative;
+        min-height: 245px;
+        .wave-icon {
+            position: absolute;
+            bottom: -60px;
+            width: 200px;
+            left: 50%;
+            margin-left: -100px;
+        }
+    }
+    .inner-content {
+        padding: 0;
+    }
+    .user-info {
+        svg-icon {
+            fill: #58c056;
+            margin-right: 10px;
+        }
+        padding-bottom: 25px;
+        border-bottom:1px solid #ebeff2;
+    }
+    .inner-content {
+        width: 600px;
+        margin: 85px auto 0 auto;
+    }
+    .avatar {
+        position: absolute;
+        left: 50%;
+        margin-left: -45px;
+        z-index: 1;
+        bottom: -45px;
+        img {
+            height: 90px;
+            width: 90px;
+            border-radius: 45px;
+            margin: 0 auto;
+            display: block;
+        }
+    }
+    .tab-nav {
+        display: inline-block;
+        li.active {
+            border-color: #b01f20 !important;
+        }
+    }
+  
+    .about-link{
+      margin-top: 80px;
+    }
+}

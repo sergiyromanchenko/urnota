@@ -1,0 +1,187 @@
+<div class="profile-dashboard ">
+    <section class="row no-gutters">
+        <div class="col-6">
+            <h2 class="mb-0">Overview</h2>
+        </div>
+        <div class="col-md-6 col-12 d-flex justify-content-md-end justify-content-sm-start align-item-center">
+            <div class="d-inline-block color-normal">
+                <img src="../../../../assets/images/icon-calendar.svg" class="m-r-15">Last 6 months</div>
+            <div class="d-inline-block color-normal m-l-30">
+                <img src="../../../../assets/images/icon-ministries.svg" class="m-r-15">Ministries</div>
+        </div>
+        <div class="separator m-t-25"></div>
+    </section>
+    <section class="row align-items-center no-gutters m-t-50 m-b-50 charts-wrap" [ngClass]="{'justify-content-between':!loading.overview, 'justify-content-center':loading.overview}">
+        <ng-container *ngIf="!loading.overview">
+            <div class="col-md-6 col-12" *ngIf="verticalOverviewChart.length">
+                <ngx-charts-bar-vertical-stacked class="m-t-50 d-block" [scheme]="chartConfig.colorScheme" [results]="verticalOverviewChart"
+                    [xAxis]="chartConfig.showXAxis" [yAxis]="chartConfig.showYAxis" [legend]="chartConfig.showLegend" [showXAxisLabel]="chartConfig.showXAxisLabel"
+                    [showYAxisLabel]="chartConfig.showYAxisLabel" [xAxisLabel]="chartConfig.xAxisLabel" [barPadding]="30" [yAxisLabel]="yAxisLabel">
+                </ngx-charts-bar-vertical-stacked>
+            </div>
+            <div>
+                <ul class="legend">
+                    <li *ngFor="let item of legend">
+                        <div class="color" [ngStyle]="{'background-color':item.color}"></div>
+                        <span class="font-s-14 m-l-10">{{item.value}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="pie-chart-wrap text-center">
+                <ngx-charts-pie-chart class="d-inline-block" [view]="[215,215]" [scheme]="chartConfig.colorScheme" [results]="pieOverviewChart" [explodeSlices]="true"
+                    [doughnut]="true" [arcWidth]="0.25">
+                </ngx-charts-pie-chart>
+                <div class="sum">
+                    <h3 class="font-normal">{{getSummarySum() | customCurrency}} </h3>
+                </div>
+            </div>
+        </ng-container>
+        <loader-circle *ngIf="loading.overview"></loader-circle>
+    </section>
+    <section>
+        <div class="tab-nav-wrap">
+            <ul class="tab-nav" role="tablist">
+                <li class="tab p-b-25" (click)="setActiveTab(1)" [ngClass]="{'active':activeTab == 1}">
+                    <a>
+                        <h2 class="mb-0">My Subscriptions</h2>
+                    </a>
+                </li>
+                <li class="tab p-b-25" (click)="setActiveTab(2)" [ngClass]="{'active':activeTab == 2}">
+                    <a>
+                        <h2 class="mb-0">My Donations</h2>
+                    </a>
+                </li>
+            </ul>
+            <div class="bottom-line"></div>
+        </div>
+    </section>
+    <ng-container *ngIf="activeTab == 1">
+        <section>
+            <ng-container *ngIf="!loading.campaigns">
+                <div class="row no-gutters">
+                    <div class="col-md-6 col-12">{{subscriptionsSummary.amount_per_month | customCurrency}}/m pledge</div>
+                    <div class="col-md-6 col-12 d-flex justify-content-md-end justify-content-sm-start">{{subscriptionsSummary.paid | customCurrency}}
+                        <span class="color-light">/ {{subscriptionsSummary.should_be_paid | customCurrency}} commitment</span>
+                    </div>
+                </div>
+                <div class="progress-bar-big m-t-15">
+                    <progress-bar [height]="20" [value]="getFundPercent(subscriptionsSummary.should_be_paid, subscriptionsSummary.paid)" [max]="100"></progress-bar>
+                </div>
+            </ng-container>
+            <loader-circle *ngIf="loading.campaigns"></loader-circle>
+            <div class="separator m-t-30"></div>
+        </section>
+        <section>
+            <section class="table-wrap">
+                <div class="table">
+                    <div class="row row-head">
+                        <div class="row-item font-s-14 col-4">
+                            Ministries
+                        </div>
+                        <div class="row-item font-s-14 col-1">
+                            Pledge
+                        </div>
+                        <div class="row-item font-s-14 col-6">
+                            Commitment
+                        </div>
+                        <div class="row-item font-s-14 col-1 text-right">
+
+                        </div>
+                    </div>
+                    <div class="row" *ngFor="let camp of campaigns">
+                        <div class="row-item col-4 font-s-15 bold">
+                            <div class="icon m-r-15">{{camp.attributes.name.charAt(0)}}</div>{{camp.attributes.name}}
+                        </div>
+                        <div class="row-item col-1">{{camp.attributes.amount_per_month | customCurrency}}/m</div>
+                        <div class="row-item col-6">
+                            <progress-bar [height]="10" [value]="getFundPercent(camp.attributes.should_be_paid, camp.attributes.paid)" [max]="100" class="m-r-25"></progress-bar>
+                            {{camp.attributes.paid | customCurrency}}
+                            <span class="color-light">/ {{camp.attributes.should_be_paid | customCurrency}}</span>
+                        </div>
+                        <div class="row-item col-1 expand-row">
+                            <div class="expand d-flex flex-column align-items-center justify-content-center float-right">
+                                <div class="exp-item"></div>
+                                <div class="exp-item"></div>
+                                <div class="exp-item"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+        <section class="row no-gutters">
+            <div class="col-6">
+                <h2 class="mb-0">My Campaigns</h2>
+            </div>
+            <div class="separator m-t-25"></div>
+        </section>
+        <section class="row no-gutters m-t-30">
+            <div class="col-md-4 col-12 card-item" *ngFor="let item of cardItems">
+                <div class="inner">
+                    <div class="head-wrap" [style.background-image]="sanitizeImage('http://via.placeholder.com/350x150')">
+                        <h3 class="bold">Orphanage Home</h3>
+                    </div>
+
+                    <div class="content-wrap">
+                        <div class="font-s-13 color-normal">
+                            My students need wobble stools to help them focus while working.
+                        </div>
+                        <div class="m-t-30 user-info d-flex align-item-center">
+                            <div class="user-img d-inline-block m-r-15"></div>
+                            <div class="text d-inline-block">
+                                <p class="font-s-14 bold">Ricardo Chandler</p>
+                                <p class="font-s-13 color-light">Act of Love</p>
+                            </div>
+                        </div>
+                        <div class="m-t-15">
+                            <progress-bar [height]="10" [value]="30" [max]="100"></progress-bar>
+                        </div>
+                        <div class="m-t-15 row no-gutters">
+                            <div class="col-md-8 col-12 font-s-15">
+                                <span class="bold">$600</span> still needed</div>
+                            <div class="col-md-4 col-12 text-right font-s-13 donors-text">120 donors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </ng-container>
+    <ng-container *ngIf="activeTab == 2">
+        <ng-container *ngIf="!loading.donations">
+                <section class="table-wrap">
+                        <div class="table">
+                            <div class="row row-head">
+                                <div class="row-item font-s-14 col-8">
+                                    Ministries
+                                </div>
+                                <div class="row-item font-s-14 col-2 text-right">
+                                    Amount
+                                </div>
+                                <div class="row-item font-s-14 col-2 text-right">
+            
+                                </div>
+                            </div>
+                            <div class="row" *ngFor="let item of donations">
+                                <div class="row-item col-8 font-s-15 bold" (click)="toggleFundItem(item, i)">
+                                    <div class="icon m-r-15">{{item.attributes.name.charAt(0)}}</div>{{item.attributes.name}}
+                                </div>
+                                <div class="row-item col-2 text-right">
+                                    {{item.attributes.paid | customCurrency}}
+                                </div>
+                                <div class="row-item col-2 expand-row">
+                                    <div class="expand d-flex flex-column align-items-center justify-content-center float-right">
+                                        <div class="exp-item"></div>
+                                        <div class="exp-item"></div>
+                                        <div class="exp-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                    </section>
+        </ng-container>
+        <loader-circle *ngIf="loading.donations"></loader-circle>
+    </ng-container>
+</div>

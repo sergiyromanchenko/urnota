@@ -1,0 +1,243 @@
+.footer {
+  color: #9ea5ac;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 11px;
+  letter-spacing: 0.9px;
+}
+
+.donate {
+  margin-top: 8px;
+  .content {
+    width: 800px;
+    border-radius: 12px;
+    margin-top: -35px;
+  }
+  .notification {
+    text-align: center;
+    font-size: 15px;
+    padding: 25px 0;
+    color: #8b795c;
+    background: #f5f3d8;
+    border-bottom: 1px solid #f5f3d8;
+  }
+
+  .sign-in-trigger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    height: 34px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 17px;
+    overflow: hidden;
+    color: #fff;
+    display: inline-block;
+    min-width: 135px;
+    padding: 7px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    top: 20px;
+    right: 20px;
+
+  }
+
+
+  .background-wrap {
+    height: 100% !important;
+  }
+  .btn {
+    padding: 16px 35px;
+    border-radius: 18px;
+    background-image: linear-gradient(90deg, #f9990f, #fd753c);
+    height: 55px;
+    color: #fff;
+    font-weight: 900;
+    font-size: 18px;
+  }
+  form {
+    width: 350px;
+    margin: 0 auto;
+    .form-group {
+      padding: 0;
+      width: 100%;
+      position: relative;
+      input {
+        width: 100%;
+        border: 1px solid #dfe5eb;
+        padding: 16px 23px;
+        border-radius: 5px;
+        background-color: #f2f5f7;
+        font-size: 18px;
+        & + svg-icon {
+          fill: #c0c6cc;
+        }
+        &:focus {
+          box-shadow: 0 3px 10px 0 rgba(20, 61, 102, 0.08) !important;
+          background: #fff;
+        }
+        &.ng-valid {
+          & + svg-icon {
+            fill: #50be58;
+          }
+        }
+        &.ng-invalid.ng-dirty.empty {
+          background: #f7e4e4;
+          & + svg-icon + .error {
+            display: inline-block;
+          }
+          & + svg-icon {
+            fill: #ef3938;
+          }
+        }
+      }
+      .avatar {
+        position: absolute;
+        top: 10px;
+        right: 42px;
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        border: solid 1px #979797;
+      }
+      .error {
+        color: #ef3938;
+        font-size: 12px;
+        position: absolute;
+        top: 22px;
+        right: 45px;
+        font-weight: 500;
+        display: none;
+      }
+      svg-icon {
+        position: absolute;
+        right: 15px;
+        top: 20px;
+      }
+    }
+  }
+}
+
+// New
+.top {
+  background-image: linear-gradient(to right, #87c648, #26b965);
+  width: 100%;
+  padding-top: 50px;
+}
+
+.tooltip {
+    width:350px !important;
+    left:50% !important;
+    margin-left:-175px !important;
+    .tooltip-inner {
+        font-size: 13px;
+        background: #fff;
+        color: #fff;
+        min-width: auto;
+        padding: 10px;
+        max-width: none;
+        a{
+            color:#2ba922;
+        }
+    }
+    .arrow {
+        display: none !important;
+    }
+}
+
+.steps {
+  .step {
+    z-index: 3;
+    position: relative;
+    border: 2px solid #26b965;
+    box-shadow: 0 0 0 1px #fff;
+    height: 7px;
+    width: 7px;
+    margin-left: 35px;
+    border-radius: 10px;
+    opacity: 0.5;
+    &.active {
+      background: #fff;
+      opacity: 1;
+    }
+    &:before {
+      height: 23px;
+      width: 23px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.3);
+      content: "";
+      display: none;
+      position: absolute;
+      top: -10px;
+      left: -10px;
+    }
+    &:after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 30px;
+      background-image: linear-gradient(
+        to right,
+        #fff 33%,
+        rgba(255, 255, 255, 0) 0%
+      );
+      background-position: bottom;
+      background-size: 4px 1px;
+      background-repeat: repeat-x;
+      margin-left: 8px;
+    }
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &.disabled{
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    &.active:hover {
+      &:before {
+        display: block;
+      }
+    }
+    & + .tooltip {
+      transform: translate(5px, 10px);
+      .tooltip-inner {
+        color: #000;
+        background: #fff;
+        font-size: 13px;
+        min-width: auto;
+      }
+      .arrow:before {
+        border-bottom-color: #fff;
+      }
+    }
+  }
+}
+
+.select-fund-text {
+  border-bottom: 1px dashed #fc9031;
+}
+
+@include media-breakpoint-down(sm) {
+  .donate {
+    .content {
+      border-radius: 0;
+      .inner-content {
+        padding: 0 30px;
+      }
+    }
+    .card-entry {
+      .payment-methods {
+        width: 100%;
+      }
+    }
+    .logo-wrapper {
+      padding: 15px 0;
+    }
+  }
+}

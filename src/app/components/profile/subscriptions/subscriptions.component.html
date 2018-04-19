@@ -1,0 +1,51 @@
+<section class="row">
+  <div class="col-md-4 col-sm-12 subscription-item" *ngFor="let sub of subscriptions" [routerLink]="['/ministry/ffm/about']">
+    <div class="inner">
+      <div class="logo">
+        <img [src]="sub.attributes.logo" alt="">
+      </div>
+      <div class="cover" [style.background-image]="sanitizeImage(sub.attributes.background)"></div>
+      <div class="avatar-wrap d-flex justify-content-center">
+        <user-avatar сlass="d-inline-block" [avatar]="sub.attributes.avatar"></user-avatar>
+      </div>
+      <h5 class="text-center m-t-15 f-w-400">{{sub.attributes.name}}</h5>
+      <h5 class="text-center font-s-14 color-light m-t-5">Andrey Shapoval</h5>
+      <ng-container *ngIf="sub.attributes.amount_per_month">
+        <div class="p-l-40 p-r-40">
+          <progress-bar class="subscription-item-progress-bar m-t-20" [height]="10" [value]="getFundPercent(sub.attributes.total_amount, sub.attributes.subscription_paid)"
+            [max]="100"></progress-bar>
+        </div>
+        <h5 class="text-center font-s-13 color-normal m-t-10">{{sub.attributes.subscription_paid}} / {{sub.attributes.total_amount}}</h5>
+      </ng-container>
+      <div class="row no-gutters bottom-info">
+        <div class="col-6 pledge-calculation-item d-flex flex-column justify-content-center align-items-center">
+          <div class="font-s-12 color-light">
+            Pledge
+          </div>
+          <div class="m-t-5">
+            <h5>{{sub.attributes.amount_per_month | customCurrency }}<span *ngIf="sub.attributes.amount_per_month">/m</span></h5>
+          </div>
+        </div>
+        <div class="col-6 pledge-calculation-item d-flex flex-column justify-content-center align-items-center">
+          <div class="font-s-12 color-light">
+            Donations
+          </div>
+          <div class="m-t-5">
+            <h5>{{sub.attributes.donation_paid | customCurrency }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-12 subscription-item add-new">
+    <div class="inner d-flex flex-column align-items-center justify-content-center disabled">
+
+      <div class="add-icon">
+        <img class="plus" src="../../../../assets/images/plus.svg" alt="">
+        <img class="plus-active" src="../../../../assets/images/plus-active.svg" alt="">
+      </div>
+
+      <h5 class="color-light m-t-20 f-w-400">Add New Ministry</h5>
+    </div>
+  </div>
+</section>

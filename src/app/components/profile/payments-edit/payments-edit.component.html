@@ -1,0 +1,124 @@
+<section class="row m-b-40">
+  <div class="d-flex align-items-center back-icon">
+    <a href="javascript:void(0)" (click)="goBack()">
+      <img src="../../../../assets/images/back.svg" alt="">
+    </a>
+  </div>
+  <div class="col d-flex align-items-center">
+    <h2 class="d-inline-block align-middle m-l-10">{{subscriptionDetails.name}}</h2>
+  </div>
+
+
+</section>
+<section class="row">
+  <div class="col-md-8 col-sm-12">
+    <div class="row">
+      <div class="col-md-2 col-12 d-flex align-items-center" *ngIf="subscriptionDetails.active">
+        <img src="../../../../assets/images/subscription-active-payments.svg" alt="" class="m-r-10">
+        <h5 class="d-inline-block color-profile mb-0">Active</h5>
+      </div>
+      <div class="col-md-2 col-12 d-flex align-items-center" *ngIf="!subscriptionDetails.active">
+        <img src="../../../../assets/images/subscription-disabled-payments.svg" alt="" class="m-r-10">
+        <h5 class="d-inline-block mb-0 color-light">Disabled</h5>
+      </div>
+      <div class="col-md-5 col-sm-12 d-flex align-items-center">
+        <div class="status-separator m-r-15 m-l-15 d-none d-md-block "></div>
+        <span *ngIf="subscriptionDetails.amount_per_month">Monthly pledge</span>
+        <span *ngIf="!subscriptionDetails.amount_per_month">Pledge</span>
+        <span class="m-l-10 m-r-10">–</span>
+        <span class="bold">{{subscriptionDetails.amount_per_month || subscriptionDetails.donation | customCurrency }}</span>
+      </div>
+      <div class="col-md-5 col-sm-12 d-flex justify-content-end">
+        <button class="btn btn-small btn-default font-s-14" (click)="open(content)" *ngIf="subscriptionDetails.active">Stop Subscription</button>
+        <button class="btn btn-small btn-primary font-s-14" *ngIf="!subscriptionDetails.active">Renew Subscription</button>
+      </div>
+    </div>
+    <div class="separator m-t-20 m-b-20"></div>
+    <div class="row">
+      <div class="col-md-1 col-2 d-flex align-items-center ">
+        <img src="../../../../assets/images/calendar.svg" alt="" class="m-r-10">
+      </div>
+      <div class="date-selection">
+        <div class="color-normal font-s-14">Start:</div>
+        <div class="font-s-14">{{subscriptionDetails.started_on}}</div>
+      </div>
+      <div class="col-md-1 col-2 d-flex align-items-center" *ngIf="subscriptionDetails.ended_on">
+        –
+      </div>
+      <div class="date-selection" *ngIf="subscriptionDetails.ended_on">
+        <div class="color-normal font-s-14">Ends:</div>
+        <div class="font-s-14">{{subscriptionDetails.ended_on}}</div>
+      </div>
+    </div>
+    <div class="separator m-t-20"></div>
+  </div>
+  <credit-card *ngIf="!loading && subscriptionDetails.card_type" class="col-md-4 col-sm-12" (action)="insertSuggestion(data)" [actionText]="''" [cardData]="subscriptionDetails"></credit-card>
+</section>
+<section class="row payments-history">
+  <div class="col-7">
+    <h4>Payments History</h4>
+  </div>
+  <div class="col-md-5 col-12 row no-gutters hidden">
+    <div class="col d-flex justify-content-end align-items-center">
+      <img src="../../../../assets/images/calendar.svg" alt="">
+      <span class="font-s-15 m-l-10 m-r-10 color-normal ">Last 6 months</span>
+      <img src="../../../assets/images/chevron-down.svg" alt="">
+    </div>
+    <div class="col d-flex justify-content-end align-items-center">
+      <img src="../../../../assets/images/filter.svg" alt="">
+      <span class="font-s-15 m-l-10 m-r-10 color-normal ">Filter by</span>
+      <img src="../../../assets/images/chevron-down.svg" alt="">
+    </div>
+  </div>
+</section>
+<section  class="table-wrap">
+  <div class="table">
+    <div class="row row-head">
+      <div class="row-item font-s-14 col-2">
+        Date
+      </div>
+      <div class="row-item font-s-14 col-4">
+        Description
+      </div>
+      <div class="row-item font-s-14 col-3">
+        Payment method
+      </div>
+      <div class="row-item font-s-14 col-3 text-right">
+        Amount
+      </div>
+    </div>
+    <div class="row" *ngFor="let trans of subscriptionTransactions">
+      <div class="row-item col-2" (click)="toggleFundItem(item, i)">
+        {{trans.attributes.created_at}}
+      </div>
+      <div class="row-item col-4">-</div>
+      <div class="row-item col-3">
+        {{trans.attributes.card_type}} **** {{trans.attributes.last_4}}
+      </div>
+  
+      <div class="row-item col-3 text-right">
+        {{trans.attributes.amount | customCurrency }}
+      </div>
+    </div>
+  </div>
+
+</section>
+<section class="text-right">
+    <h5 class="color-normal d-inline">Total credit:</h5><h5 class="m-l-10 bold d-inline">{{getTransactionsSum() | customCurrency }}</h5>
+  </section>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Do you really want to stop subscription?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <img src="../../../../assets/images/icon-close.svg" alt="">
+    </button>
+  </div>
+  <div class="modal-body">
+    You will be able to renew your subscription any time.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-block btn-small btn-default" (click)="d()">Cancel</button>
+    <button type="button" class="btn btn-block btn-small btn-danger" (click)="c()">Stop Subscription</button>
+  </div>
+</ng-template>

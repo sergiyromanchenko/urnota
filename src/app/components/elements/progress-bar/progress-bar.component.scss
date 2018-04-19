@@ -1,0 +1,10 @@
+.progress {
+  background-color: #f2f2f2;
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  .progress-bar {
+    height: 20px;
+  }
+}

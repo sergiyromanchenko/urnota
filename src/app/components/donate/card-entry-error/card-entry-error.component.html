@@ -1,0 +1,19 @@
+
+<div class="donate card-entry-error">
+  <div class="content">
+  <div class="col-10 offset-1 col-md-12 offset-md-0">
+    <section class="text-center m-t-40 logo">
+      <img src="../../../../assets/images/about/logo.png" alt="">
+    </section>
+    <section class="text-center m-t-40">
+      <h4>We could not complete your payment</h4>
+      <h5>Your pledged {{fundData.totalAmount | customCurrency }} to Flame of Fire Ministry,but some problem has occured with
+        you card. Please recheck your card info.</h5>
+    </section>
+    <section class="m-t-40 text-center submit-donate">
+      <a [routerLink]="['/donate/cardEntry']" class="btn btn-big btn-green d-none d-md-inline-block">Check my card info</a>
+      <a [routerLink]="['/mobile/donate/cardEntry']" class="btn btn-big btn-green d-none d-sm-block d-md-none">Check my card info</a>
+    </section>
+  </div>
+  </div>
+</div>

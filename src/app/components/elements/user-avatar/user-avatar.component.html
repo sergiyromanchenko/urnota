@@ -1,0 +1,8 @@
+<div class="user-avatar d-flex justify-content-center align-items-center" [ngClass]="{initials:!avatar, progress:uploading, 'upload-enabled':uploadEnabled}">
+  <ng-container *ngIf="!uploading">
+    <img *ngIf="avatar" [src]="avatar" class="avatar" alt="">
+    <img *ngIf="!avatar" src="../../../../assets/images/user.png" class="avatar" alt="">
+    <img class="plus" src="../../../../assets/images/plus-avatar.svg" alt="">
+  </ng-container>
+  <loader *ngIf="uploading"></loader>
+</div>

@@ -1,0 +1,27 @@
+{
+  "name": "angular2-http-file-upload",
+  "version": "1.0.6",
+  "description": "Library to support HTTP file uploads for Angular 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-zeng/angular2-http-file-upload.git"
+  },
+  "keywords": [
+    "Angular",
+    "Angular2",
+    "ng2",
+    "HTTP",
+    "File",
+    "Upload"
+  ],
+  "author": "jzeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j-zeng/angular2-http-file-upload/issues"
+  },
+  "homepage": "https://github.com/j-zeng/angular2-http-file-upload"
+}

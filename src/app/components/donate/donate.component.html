@@ -1,0 +1,13 @@
+<profile-quick-actions *ngIf="profileService.isAuthenticated()"></profile-quick-actions>
+<sidebar-signin *ngIf="!profileService.isAuthenticated()"></sidebar-signin>
+<dynamic-background [bg]="'signupBg.jpg'"></dynamic-background>
+<dynamic-logo [logo]="'logo-flame-ministry.png'"></dynamic-logo>
+<div class="steps d-flex align-items-center justify-content-center m-t-30">
+    <div class="step active" (click)="getStorage('fundData') ? navigateToStep('partner') : 0" 
+        placement="bottom" ngbTooltip="{{getStorage('fundData')?.amount | customCurrency}}{{getStorage('fundData')?.subscription == 'monthly' ? ' monthly' : ''}}"
+        triggers="manual" #t="ngbTooltip" (mouseleave)="t.close()" (mouseover)="getStorage('fundData') ? t.open() : null" [ngClass]="{disabled:getStorage('donatePassed')}"></div>
+    <div class="step" (click)="getStorage('fundData') ? navigateToStep('userInfo') : 0" [ngClass]="{'active':getStorage('fundData'), disabled:getStorage('donatePassed')}"></div>
+    <div class="step" (click)="getStorage('authData') ? navigateToStep('cardEntry') : 0" [ngClass]="{'active':getStorage('authData'), disabled:getStorage('donatePassed')}"></div>
+    <div class="step" [ngClass]="{'active':getStorage('donatePassed')}"></div>
+</div>
+<router-outlet></router-outlet>

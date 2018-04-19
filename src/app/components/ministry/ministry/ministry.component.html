@@ -1,0 +1,109 @@
+<section class="about">
+  <dynamic-background [bg]="'bg_donate.jpg'"></dynamic-background>
+  <dynamic-logo [logo]="'logo-flame-ministry.png'" *ngIf="contentOnly"></dynamic-logo>
+  <div class="content row about__content" [ngClass]="{'small':contentOnly}">
+    <div class="side-content side-content--border-right" *ngIf="!contentOnly">
+      <div class="about__logo">
+        <a [routerLink]="['/ministry/ffm/about']">
+          <img src="../../../assets/images/about/logo.png" alt="">
+        </a>
+      </div>
+      <ul class="navigation">
+
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/ministry/ffm/about']">
+            <span class="navigation-icon">
+              <img src="../../../assets/images/about/about.svg">
+            </span>
+            <span class="navigation-title">About</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/ministry/ffm/departments']" >
+            <span class="navigation-icon">
+              <img src="../../../assets/images/about/departments.svg">
+            </span>
+            <span class="navigation-title">Departments</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/ministry/ffm/budget']">
+            <span class="navigation-icon">
+              <img src="../../../assets/images/about/budget.svg">
+            </span>
+            <span class="navigation-title">Budget</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/ministry/ffm/campaigns']">
+            <span class="navigation-icon">
+              <img src="../../../assets/images/about/campaigns.svg">
+            </span>
+            <span class="navigation-title">Campaigns</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/ministry/ffm/events']">
+            <span class="navigation-icon">
+              <img src="../../../assets/images/about/002_calendar.svg">
+            </span>
+            <span class="navigation-title">Events</span>
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/ministry/ffm/MyDonations']">
+            <span class="navigation-icon">
+              <img src="../../../assets/images/about/001_coin.svg">
+            </span>
+            <span class="navigation-title">My Donations</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="main-content about__main-content">
+
+      <router-outlet></router-outlet>
+
+    </div>
+    <div class="side-content about__side-content" *ngIf="!contentOnly">
+      <div class="about__user">
+        <div class="about__team-img about__user-img">
+          <div class="about__team-img-wrap" [routerLink]="['/profile/settings']">
+            <img [src]="getAvatar(profile.avatar)" alt="">
+          </div>
+
+        </div>
+
+        <div class="about__user-name">{{profile.name}}</div>
+        <div class="about__user-social">
+          <a [routerLink]="['/profile']" class="about__user-social-item">
+            <img src="../../../assets/images/about/social/account.svg" alt="">
+          </a>
+          <a [routerLink]="['/profile/dashboard']" class="about__user-social-item">
+            <img src="../../../assets/images/about/social/chart.svg" alt="">
+          </a>
+          <a [routerLink]="['/profile/subscriptions']" class="about__user-social-item">
+            <img src="../../../assets/images/about/social/message.svg" alt="">
+          </a>
+        </div>
+
+        <div class="about__user-info" >
+          <div class="about__user-info-title">Pledge</div>
+          <div class="progress" *ngIf="ministryDetails">
+            <div class="progress-bar" role="progressbar" [style.width]="getFundPercent(ministryDetails.total_amount, ministryDetails.subscription_paid) + '%'"  aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="about__user-range-info" *ngIf="ministryDetails">
+            <span>{{ministryDetails.subscription_paid | customCurrency}}</span>
+            / {{ministryDetails.total_amount | customCurrency}}
+          </div>
+          <button class="about__donate-btn" type="button" [routerLink]="['/donate/partner']">
+            <span>Donate</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>

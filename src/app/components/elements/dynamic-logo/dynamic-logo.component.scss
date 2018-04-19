@@ -1,0 +1,18 @@
+@import 'responsive';
+.logo-wrapper {
+    position: relative;
+    z-index: 1;
+    padding: 55px 0 56px 0;
+    max-height: 182px;
+    img {
+        width: 140px
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    mobile {
+        .logo-wrapper {
+            padding: 15px 0;
+        }
+    }
+}

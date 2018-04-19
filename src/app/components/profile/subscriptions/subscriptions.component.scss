@@ -1,0 +1,105 @@
+.subscription-item {
+  padding: 15px;
+  .inner {
+    cursor: pointer;
+    position: relative;
+    height: 345px;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border: solid 1px #ebebeb;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+    .logo {
+      position: absolute;
+      width: 120px;
+      left: 50%;
+      margin-left: -60px;
+      top: 12px;
+      z-index: 2;
+      img {
+        width: 100%;
+      }
+    }
+    .progress {
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0), #dcdcdc), linear-gradient(#ededed, #ededed);
+      box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.17);
+    }
+    .cover {
+      position: relative;
+      background: url() no-repeat left top;
+      height: 110px;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      width: 100%;
+    }
+    .avatar-wrap{
+      margin-top: -30px;
+      .user-avatar {
+        height: 60px;
+        width: 60px;
+        border-width: 3px;
+      }
+    }
+    .subscription-item-progress-bar {
+      .progress-bar {
+        background-image: linear-gradient(to right, #8cc751, #3ab870);
+      }
+    }
+    .pledge-calculation-item {
+      border-left: 1px solid #f0f0f0;
+      height:70px;
+      &:first-child {
+        border: none;
+      }
+    }
+  }
+  .bottom-info{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #f0f0f0;
+  }
+  &:hover{
+    .inner{
+      background-color: #ffffff;
+      box-shadow: 0 5px 20px 0 rgba(97, 97, 97, 0.15);
+      border: solid 1px #f0f0f0;
+    }
+  }
+  &.add-new {
+    .inner {
+      background: #fff;
+      .add-icon {
+        background: #fafafa;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        img {
+          margin-top: 28px;
+          margin-left: 28px;
+        }
+      }
+      .plus{
+        display: inline-block
+      }
+      .plus-active{
+        display: none;
+      }
+      
+    }
+    &:hover {
+      cursor: pointer;
+      .inner {        
+        .plus{
+          display: none;
+        }
+        .plus-active{
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

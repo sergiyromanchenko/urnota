@@ -1,0 +1,36 @@
+
+.tab-nav {
+  list-style: none;
+  padding: 0;
+  font-size: 0;
+  li {
+      display: inline-block;
+      min-width: 160px;
+      position: relative;
+      padding: 10px 30px;
+      &::after {
+          content: '';
+          display: block;
+          width: 0;
+          height: 1px;
+          background: #F2F2F2;
+          transition: width .3s;
+          position: absolute;
+          bottom: 0;
+          left:0;
+      } // border-bottom: 1px solid #F2F2F2;
+      box-sizing: border-box;
+      font-size: 20px;
+      a:not([href]):not([tabindex]) {
+          color: #a6a6a6;
+      }
+      cursor: pointer;
+      text-align: center;
+      &.active {
+          &::after {
+              width: 100%;
+              background: #6BBD5C;
+          }
+      }
+  }
+}

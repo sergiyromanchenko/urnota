@@ -1,0 +1,115 @@
+@import 'variables';
+@import 'responsive';
+@import "../../elements/tab-nav/tab-nav.component";
+.hamburger{
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 1090;
+}
+.background-wrap{
+  height: 320px !important;
+}
+.main-content{
+  padding: 60px;
+}
+.profile {
+  
+  .side-content {
+    background-color: #fafafa;
+    box-shadow: inset 1px 0 0 0 #f2f2f2;
+    .user-avatar {
+      height: 80px;
+      width: 80px;
+    }
+  }
+  .content {
+    width: 1170px;
+    padding:0;
+    min-height: 700px;
+  }
+  
+  .navigation {
+    padding: 0;
+    margin:0;
+    li {
+      display: block;
+      padding: 0;
+      border-right: 3px solid transparent;
+      margin:0;
+      &.active,&:hover {
+        border-color: #66c05f;
+        background: #fff;
+        a {
+          color: #4f4f4f;
+        }
+        .passive-icon{
+          display: none;
+        }
+        .active-icon{
+          display: inline-block;
+        }
+      }
+      &:hover{
+        border-color:transparent;
+      }
+      
+      .active-icon{
+        display: none
+      }
+      .passive-icon{
+        display: inline-block;
+      }
+      a {
+        text-decoration: none;
+        color: #a6a6a6;
+        display: inline-block;
+        width: 100%;
+        padding: 17px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+        img{
+            margin-right: 14px;
+        }
+      }
+    }
+  }
+  .interests-label{
+      color:#a6a6a6
+  }
+  .interest-item{
+      padding:10px 0;
+      font-size:14px;
+      font-size:14px;
+      
+      .icon{
+          margin-right: 10px;
+          display: inline-block;
+          height: 24px;
+          width: 24px;
+          background: #d83f3f;
+          color:#fff;
+          text-align: center;
+          line-height: 24px;
+          font-weight: bold;
+          text-transform: uppercase;
+          border-radius: 12px;
+      }
+  }
+  .logout{
+    position: absolute;
+    bottom: 0;
+  }
+  @include media-breakpoint-down(sm) {
+    .logout{
+      position: relative
+    }
+    .main-content {
+      padding: 25px;
+    }
+  }
+ 
+}
+
+

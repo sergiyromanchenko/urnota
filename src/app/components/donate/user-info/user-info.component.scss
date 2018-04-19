@@ -1,0 +1,31 @@
+.top {
+    position: relative;
+    .wave-icon {
+        position: absolute;
+        bottom: -24px;
+        width: 64px;
+        left: 50%;
+        margin-left: -32px;
+    }
+}
+
+.fb-link {
+    color: #4565ab;
+}
+
+
+.tooltip {
+    width:350px;
+    left:50%;
+    margin-left:175;
+    .tooltip-inner {
+        font-size: 13px;
+        background: #4f4f4f;
+        color: #fff;
+        min-width: auto;
+        padding: 10px;
+    }
+    .arrow {
+        display: none !important;
+    }
+}

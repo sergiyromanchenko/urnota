@@ -1,0 +1,5 @@
+<ul class="tab-nav" role="tablist">
+  <li class="tab" *ngFor="let tab of tabs;let i = index" [ngClass]="{active:i == activeTab}" (click)="selectTab(i)">
+    {{tab}}
+  </li>
+</ul>

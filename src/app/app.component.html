@@ -1,0 +1,4 @@
+<perfect-scrollbar [disabled]="isMobile()" [ngClass]="{'ps-custom':!isMobile()}" [perfectScrollbar]="config">
+    <router-outlet></router-outlet>
+    <footer *ngIf="!isMobile()"></footer>
+</perfect-scrollbar>

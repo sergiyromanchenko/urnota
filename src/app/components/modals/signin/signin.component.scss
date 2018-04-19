@@ -1,0 +1,35 @@
+@import 'variables';
+@import 'responsive';
+.signin-modal {
+  .modal-content{
+    padding: 0 60px 50px 60px;
+    position: relative;
+    .close{
+      position: absolute;
+      top:18px;
+      right: 18px;
+    }
+  }
+    .modal-body {
+        .tab-nav li {
+            width: 50%;
+        }
+    }
+    .modal-content {
+        margin: 0;
+        .modal-header {
+        
+            img.logo {
+                height: 20px;
+            }
+           
+            border-bottom: solid 1px #e7e7e7;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .signin-modal {
+        min-width: auto;
+    }
+}

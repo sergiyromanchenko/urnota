@@ -1,0 +1,49 @@
+<div class="partner-signup">
+
+  <div class="content row">
+    <div class="top">
+      <div class="text-center m-t-20 m-b-30">
+        <h4 class="text-white">Contact Information</h4>
+      </div>
+      <div class="wave-icon">
+        <svg-icon src="../../../../assets/images/wave-green.svg"></svg-icon>
+      </div>
+    </div>
+    <div class="m-t-35 text-center w-100">
+      <a href="javascript:void(0)" class="fb-link font-s-13">Use my Facebook Info</a>
+    </div>
+    <form novalidate class="m-t-15" #userInfoForm="ngForm" (ngSubmit)="onUserInfoFormSubmit()">
+      <div class="form-group">
+        <input type="text" placeholder="Name" name="name" [ngClass]="{empty:!userInfo.name}" [(ngModel)]="userInfo.name" required>
+        <svg-icon src="../../../../assets/images/contact-name.svg"></svg-icon>
+        <span class="error">This field is required</span>
+        <!-- <img class="avatar" src="https://randomuser.me/api/portraits/men/67.jpg" alt=""> -->
+      </div>
+      <div class="form-group m-t-15" [ngbTooltip]="existingUserTooltipContent" #t="ngbTooltip" triggers="manual">
+          <!-- pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" -->
+        <input type="text" placeholder="Email address*" name="email" #email="ngModel" [ngClass]="{empty:!userInfo.email}" [(ngModel)]="userInfo.email"
+           required>
+        <svg-icon src="../../../../assets/images/contact-mail.svg"></svg-icon>
+        <span class="error">This field is required</span>
+      </div>
+      <div class="form-group m-t-15">
+        <input type="text" placeholder="Phone" name="phone" [ngClass]="{empty:!userInfo.phone}" [(ngModel)]="userInfo.phone" [textMask]="{mask: phoneMask}"
+          required>
+        <svg-icon src="../../../../assets/images/contact-phone.svg"></svg-icon>
+        <span class="error">This field is required</span>
+      </div>
+      <button type="submit" class="btn btn-normal btn-block btn-primary btn-complete-profile m-t-30" [disabled]="!userInfoForm.valid">Continue</button>
+    </form>
+  </div>
+
+  <ng-template #existingUserTooltipContent let-existingUserTooltip="existingUserTooltip">
+
+      <img class="d-inline-block m-r-10" src="../../../../assets/images/user-existing.svg" alt="">
+    
+      <div class="d-inline-block font-s-13 color-dark">
+        It seems that you are already registered.
+        <br>
+        <a href="javascript:void(0)" (click)="showSignin()" angulartics2On="click" angularticsAction="Click" angularticsLabel="Partner Donate"
+          [angularticsCategory]="'Tooltip Signin'">Sign in to your account</a> to proceed faster.
+      </div>
+    </ng-template>

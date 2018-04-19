@@ -1,0 +1,107 @@
+<div class="donate complete-profile">
+
+  <div class="content">
+    <div class="top-content row">
+      <div class="col-lg-10 offset-lg-1 m-t-20">
+        <section class="row color-white top-labels" *ngIf="paymentInfo.subscription == 'monthly'">
+          <div class="col-lg-4 pledge-sum text-center">
+            <h5 class="bold">${{paymentInfo.totalAmount}}
+              <span>monthly</span> pledge</h5>
+          </div>
+          <div class="col-lg-4 text-center font-bold donator-name">
+            <h4 class="bold">{{userData.name}}</h4>
+          </div>
+          <div class="col-lg-4 text-right commitment-sum" *ngIf="paymentInfo.subscription == 'monthly'">
+            <h5 class="bold">{{(paymentInfo.totalAmount * 12) | customCurrency }} commitment</h5>
+          </div>
+        </section>
+        <section class="row color-white top-labels" *ngIf="paymentInfo.subscription == 'once'">
+          <div class="col-12 text-center font-bold donator-name">
+            <h4 class="bold">{{userData.name}}</h4>
+          </div>
+          <div class="col-12 pledge-sum text-center">
+            <h5 class="bold">${{paymentInfo.totalAmount}} donate</h5>
+          </div>
+        </section>
+        <section class="m-t-5" *ngIf="paymentInfo.subscription == 'monthly'">
+          <div class="progress-bar">
+            <div class="progress"></div>
+          </div>
+        </section>
+        <section class="row color-white top-labels" *ngIf="!paymentInfo.totalAmount && userData">
+          <div class="col-12 text-center font-bold">
+            <h4 class="bold">{{userData.name}}</h4>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div>
+      <section class="m-t-40 text-center">
+        <h3>Complete Profile</h3>
+      </section>
+      <section class="text-center steps m-t-25">
+        <ul>
+          <li *ngFor="let step of steps" (click)="activateStep(step)">
+            <img src="../../../../assets/images/step-inactive.svg" *ngIf="step > activeStep" alt="">
+            <img src="../../../../assets/images/step-current.svg" *ngIf="step == activeStep" alt="">
+            <img src="../../../../assets/images/step-complete.svg" *ngIf="step < activeStep" alt="">
+          </li>
+        </ul>
+        <div class="m-t-10">
+          <span class="step-name" *ngIf="steps.length != activeStep">Step {{activeStep}}</span>
+          <span class="step-name" *ngIf="steps.length == activeStep">Final step (optional)</span>
+        </div>
+      </section>
+      <!-- <section class="m-t-40 text-center">
+        <user-avatar class="user-avatar" (click)="fileInput.click()" [avatar]="getAvatar(userData.avatar)"></user-avatar>
+      </section> -->
+      <section class="m-t-25 col-lg-6 offset-lg-3 text-center">
+        <form #profileForm="ngForm" (ngSubmit)="onProfileFormSubmit()">
+
+          <div [hidden]="activeStep != 2">
+            <div class="form-group ">
+              <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="userData.name" required>
+            </div>
+            <div class="form-group m-t-10">
+              <input type="email" class="form-control" placeholder="E-mail" name="email" [(ngModel)]="userData.email" required>
+            </div>
+            <div class="form-group m-t-10">
+              <input type="tel" class="form-control" [textMask]="{mask: phoneMask}" placeholder="Phone" name="phone" [(ngModel)]="userData.phone">
+            </div>
+            <div class="form-group m-t-30">
+              <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="userData.password" required>
+            </div>
+          </div>
+
+          <div [hidden]="activeStep != 3">
+            <div class="form-group m-t-10">
+              <input type="text" class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+                [(ngModel)]="userData.address" name="address" placeholder="Address" />
+            </div>
+            <div class="form-group m-t-10">
+              <input type="text" class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+                [(ngModel)]="userData.city" name="city" placeholder="City" />
+            </div>
+            <div class="row mx-0">
+
+              <div class="form-group col-lg-8">
+                <input type="text" class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+                  [(ngModel)]="userData.state" name="state" placeholder="State" />
+              </div>
+              <div class="form-group col-lg-4">
+                <input type="text" class="form-control" placeholder="Zip" name="zip_code" [(ngModel)]="userData.zip_code">
+              </div>
+
+            </div>
+            
+          </div>
+          <div class="m-t-30 p-l-10 p-r-10">
+              <button angulartics2On="click" angularticsAction="Click" angularticsLabel="Donate Complete Profile" [angularticsCategory]="'Next Step'" class="btn btn-normal btn-primary btn-block" type="submit" (click)="activeStep = activeStep + 1" [disabled]="!profileForm.valid"
+                *ngIf="activeStep == 2">Next</button>
+              <button angulartics2On="click" angularticsAction="Click" angularticsLabel="Donate Complete Profile" [angularticsCategory]="'Save Profile'" class="btn btn-normal btn-primary btn-block" type="submit" *ngIf="activeStep == 3">Save Profile</button>
+            </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>

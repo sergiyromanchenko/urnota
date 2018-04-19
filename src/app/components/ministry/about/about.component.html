@@ -1,0 +1,171 @@
+<h1 class="about__title">Vision</h1>
+<p class="about__text">
+  We are a team of people who have united around the vision that was received by the founder of the ministry, pastor evangelist
+  Andrey Shapoval, through a revelation given by the Holy Spirit.
+  <br>
+  <br> Our vision is to preach the Gospel of the Kingdom across the whole Earth. We believe that Church must operate within
+  the power of God, through gifts of the Holy Spirit, employing dominion upon this earth.</p>
+
+<div class="about__content-section">
+  <h2 class="about__subtitle">Our team</h2>
+  <ul class="about__team-list">
+    <ng-container *ngFor="let member of members; let i = index">
+      <li class="about__team-item" *ngIf="limit ? i < limit : true">
+        <div class="about__team-img">
+          <div class="about__team-img-wrap">
+            <img src="{{member.avatar}}" alt="">
+          </div>
+        </div>
+        <h4 class="about__team-name">{{member.name}}</h4>
+        <h6 class="about__team-label">{{member.role}}</h6>
+      </li>
+    </ng-container>
+  </ul>
+  <button class="about__team-btn" type="button" (click)="limit = limit ? 0 : 3">Show {{limit ? 'More' : 'Less'}}</button>
+</div>
+
+<div class="about__content-section">
+  <h2 class="about__subtitle">Contact Us</h2>
+  <div class="about__contact-row">
+    <div class="about__contact-col">
+      <div class="about__contact-item">
+        <div class="about__contact-label">Phone</div>
+        <div class="about__contact-value">+1 (916) 472-0847</div>
+      </div>
+
+      <div class="about__contact-item">
+        <div class="about__contact-label">Email</div>
+        <div class="about__contact-value">info@ffministry.com</div>
+      </div>
+
+      <div class="about__contact-item">
+        <div class="about__contact-label">Website</div>
+        <div class="about__contact-value">
+          <a href="http://ffministry.com" target="_blank">ffministry.com</a>
+        </div>
+      </div>
+
+      <div class="about__contact-item">
+        <div class="about__contact-label">Address</div>
+        <div class="about__contact-value">
+          3437 Myrtle Ave Suite 410,
+          <br> North Highlands, CA 95660
+          <br> United States
+        </div>
+      </div>
+      <button class="about__contact-btn" type="button" (click)="open(sendMessage)">
+        <span>Send a Message</span>
+      </button>
+    </div>
+
+    <div class="about__contact-col">
+      <div class="about__contract-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.7469453768067!2d-121.38771648389867!3d38.65469856881685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM5JzE2LjkiTiAxMjHCsDIzJzA3LjkiVw!5e0!3m2!1suk!2sua!4v1515533969223"
+          width="100%" height="355" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about__content-section">
+  <h2 class="about__subtitle">Ministry Details</h2>
+  <div class="about__details">
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/flag_2.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Established</div>
+      <div class="about__team-label">2010</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/003_people.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Members</div>
+      <div class="about__team-label">120</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/002_bar_chart.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Annual Budget</div>
+      <div class="about__team-label">Coming soon</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/bell.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Church Association</div>
+      <div class="about__team-label">Ecclessia</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/t.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Type</div>
+      <div class="about__team-label">Evangelistic</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/light_bulb.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Non Profit</div>
+      <div class="about__team-label">Yes</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/percent.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Federal Tax ID</div>
+      <div class="about__team-label">27-4442190</div>
+    </div>
+
+    <div class="about__details-item">
+      <div class="about__team-img about__details-icon">
+        <div class="about__details-icon-wrap">
+          <img src="../../../assets/images/about/details/camp.svg" alt="">
+        </div>
+      </div>
+      <div class="about__team-name">Campaigns</div>
+      <div class="about__team-label">Coming soon</div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #sendMessage let-c="close" let-d="dismiss">
+  <form action="mailto:info@ffministry.com?subject=Message from {{profile.name}}" ngNoForm method="post" enctype="text/plain">
+    <div class="modal-header">
+      <h4 class="modal-title">Send Us a Message</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <img src="../../../../assets/images/icon-close.svg" alt="">
+      </button>
+    </div>
+    <div class="modal-body">
+      <textarea name="comment" size="50"></textarea>
+    </div>
+    <div class="modal-footer d-flex justify-content-start">
+      <button type="submit" class="btn btn-small btn-primary" (click)="closeWithDelay(d)">Send Message</button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,10 @@
+<form #checkout="ngForm" (ngSubmit)="onSubmit()" class="checkout">
+  <div class="form-row">
+    <div id="card-info" #cardInfo></div>
+    <!-- <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div> -->
+  </div>
+  <button type="submit" [disabled]="!stripeValid" class="btn btn-big btn-red btn-donate btn-block m-t-30" [ngClass]="{inactive:paymentPending}" *ngIf="!disableSelfControl">
+    <loader *ngIf="paymentPending"></loader>
+    <span *ngIf="!paymentPending">Donate {{sum | customCurrency }}</span>
+  </button>
+</form>

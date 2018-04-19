@@ -1,0 +1,89 @@
+@import "../donate";
+.card-entry {
+    .inner-content{
+        padding: 0 100px;
+    }
+    .top {
+        position: relative;
+        
+        .wave-icon {
+            position: absolute;
+            bottom: -24px;
+            width: 64px;
+            left: 50%;
+            margin-left: -32px;
+        }
+    }
+.methods{
+    .method{
+        margin-top:10px;
+        border-radius: 5px;
+        padding: 8px;
+        cursor: pointer;
+        img{
+            margin-right: 8px;
+        }
+        border: solid 1px #ebeff2;
+        &:first-child{
+            margin-top:0;
+        }
+        &:hover{
+            border-color:#fb8429;
+        }
+        &.selected {
+            cursor: default;
+            border-color: #FFDCCB;
+            background: #FFFBF7;
+            .icon {
+                fill: #ffa730;
+            }
+        }
+    }
+}
+    .form-wrap {
+        width: 320px;
+        margin: 0 auto;
+        .tab-nav li {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+    }
+    .tab-nav {
+        display: inline-block;
+        margin-bottom: 0;
+        li.active {
+            border-color: #b01f20 !important;
+        }
+    }
+    .btn-donate {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    form {
+        .ng-dirty.ng-invalid {
+            border: 1px solid red;
+        }
+    }
+    .payment-methods {
+        width: 320px;
+        display: block;
+        margin: 0 auto;
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li.method {
+                list-style: none;
+                height: 60px;
+                padding-top: 15px;
+                margin: 0;
+                border-bottom: 1px solid #F2F2F2;
+            }
+        }
+    }
+    .custom-dropdown {
+        cursor: pointer;
+        box-shadow: inset 0 -1px 0 0 #f2f2f2;
+    }
+}
